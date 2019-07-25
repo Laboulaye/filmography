@@ -3,11 +3,20 @@ package com.study.filmography.service;
 import com.study.filmography.dao.FilmDao;
 import com.study.filmography.dao.FilmDaoImpl;
 import com.study.filmography.model.Film;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.xml.ws.ServiceMode;
 import java.util.List;
 
+@Service
 public class FilmServiceImpl implements FilmService {
-    private FilmDao filmDao = new FilmDaoImpl();
+    private FilmDao filmDao;
+
+    @Autowired
+    public void setFilmDao(FilmDao filmDao) {
+        this.filmDao = filmDao;
+    }
 
     @Override
     public List<Film> allFilms() {

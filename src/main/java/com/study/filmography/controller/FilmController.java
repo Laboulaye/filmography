@@ -3,6 +3,7 @@ package com.study.filmography.controller;
 import com.study.filmography.model.Film;
 import com.study.filmography.service.FilmService;
 import com.study.filmography.service.FilmServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,13 @@ import java.util.List;
 @Controller
 public class FilmController {
 
-    private FilmService filmService = new FilmServiceImpl();
+
+    private FilmService filmService;
+
+    @Autowired
+    public void setFilmService(FilmService filmService) {
+        this.filmService = filmService;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView allFilms(){
