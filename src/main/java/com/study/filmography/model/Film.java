@@ -4,8 +4,8 @@ public class Film {
 
     private int id;
     private String title;
-    private String genre;
     private int year;
+    private String genre;
     private boolean watched;
 
     public int getId() {
