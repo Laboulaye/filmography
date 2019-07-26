@@ -17,7 +17,12 @@
 <c:if test="${!empty film.title}">
     <c:url value="/edit" var="var"/>
 </c:if>
-<h2>Edit</h2>
+<c:if test="${!empty film.title}">
+    <h2>Edit film</h2>
+</c:if>
+<c:if test="${empty film.title}">
+    <h2>Add film</h2>
+</c:if>
 <div>
 <form action="${var}" method="POST">
     <c:if test="${!empty film.title}">
