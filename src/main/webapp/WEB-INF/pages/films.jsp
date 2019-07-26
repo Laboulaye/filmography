@@ -3,12 +3,13 @@
 <html>
 <head>
     <title>FILMS</title>
+    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <h2>Films</h2>
 <table>
-    <tr>
+    <tr class="header">
         <th>id</th>
         <th>title</th>
         <th>year</th>
@@ -29,10 +30,20 @@
             </td>
         </tr>
     </c:forEach>
+    <tr>
+        <td colspan="7">
+            <c:url value="/add" var="add"/>
+            <a href="${add}">Add new film</a>
+            <c:forEach begin="1" end="${pagesCount}" step="1" varStatus="i">
+                <c:url value="/" var="url" >
+                    <c:param name="page" value="${i.index}"/>
+                </c:url>
+                <br/>
+                <a class="page" href="${url}">${i.index}</a>
+            </c:forEach>
+        </td>
+    </tr>
 </table>
 
-<h2>Add</h2>
-<c:url value="/add" var="add"/>
-<a href="${add}">Add new film</a>
 </body>
 </html>

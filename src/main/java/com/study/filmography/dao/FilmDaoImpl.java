@@ -6,11 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class FilmDaoImpl implements FilmDao {
@@ -22,11 +18,16 @@ public class FilmDaoImpl implements FilmDao {
         this.sessionFactory = sessionFactory;
     }
 
+    public int filmsCount(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("SELECT count(*) FROM Film", Number.class).getSingleResult().intValue();
+    }
+
     @Override
     @SuppressWarnings("unchecked")
-    public List<Film> allFilms() {
+    public List<Film> allFilms(int page) {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("From Film").list();
+        return session.createQuery("From Film").setFirstResult(10*(page-1)).setMaxResults(10).list();
     }
 
     @Override

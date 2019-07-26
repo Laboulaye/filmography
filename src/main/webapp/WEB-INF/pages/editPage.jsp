@@ -8,6 +8,7 @@
     <c:if test="${!empty film.title}">
         <title>Edit</title>
     </c:if>
+    <link href="<c:url value="/res/style.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <c:if test="${empty film.title}">
@@ -16,24 +17,30 @@
 <c:if test="${!empty film.title}">
     <c:url value="/edit" var="var"/>
 </c:if>
+<h2>Edit</h2>
+<div>
 <form action="${var}" method="POST">
     <c:if test="${!empty film.title}">
         <input type="hidden" name="id" value="${film.id}">
     </c:if>
     <label for="title">Title</label>
-    <input type="text" name="title" id="title">
+    <input type="text" name="title" id="title" value="${film.title}">
     <label for="year">Year</label>
-    <input type="text" name="year" id="year">
+    <input type="text" name="year" id="year" value="${film.year}">
     <label for="genre">Genre</label>
-    <input type="text" name="genre" id="genre">
+    <input type="text" name="genre" id="genre" value="${film.genre}">
     <label for="watched">Watched</label>
-    <input type="text" name="watched" id="watched">
+    <input type="text" name="watched" id="watched" value="${film.watched}">
+    <br/>
+    <input type="submit" value="Back" >
     <c:if test="${empty film.title}">
         <input type="submit" value="Add new film">
     </c:if>
     <c:if test="${!empty film.title}">
         <input type="submit" value="Edit film">
     </c:if>
+
 </form>
+</div>
 </body>
 </html>
